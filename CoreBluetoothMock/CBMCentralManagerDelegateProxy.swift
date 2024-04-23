@@ -76,6 +76,14 @@ open class CBMCentralManagerDelegateProxy: NSObject, CBMCentralManagerDelegate {
         didDisconnect?(central, peripheral, error)
     }
     
+    public func centralManager(_ central: CBMCentralManager, 
+                               didDisconnectPeripheral peripheral: CBMPeripheral,
+                               timestamp: CFAbsoluteTime,
+                               isReconnecting: Bool,
+                               error: (any Error)?) {
+        didDisconnect?(central, peripheral, error)
+    }
+    
     @available(iOS 13.0, *)
     open func centralManager(_ central: CBMCentralManager,
                                connectionEventDidOccur event: CBMConnectionEvent,

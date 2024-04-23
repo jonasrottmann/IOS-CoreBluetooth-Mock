@@ -93,6 +93,19 @@ public class CBMCentralManagerNative: CBMCentralManager {
             removePeripheral(peripheral)
         }
         
+        func centralManager(_ central: CBCentralManager, 
+                            didDisconnectPeripheral peripheral: CBPeripheral,
+                            timestamp: CFAbsoluteTime,
+                            isReconnecting: Bool,
+                            error: (any Error)?) {
+            manager.delegate?.centralManager(manager,
+                                             didDisconnectPeripheral: getPeripheral(peripheral),
+                                             timestamp: timestamp,
+                                             isReconnecting: isReconnecting,
+                                             error: error)
+            removePeripheral(peripheral)
+        }
+        
         #if !os(macOS)
         @available(iOS 13.0, *)
         func centralManager(_ central: CBCentralManager,
